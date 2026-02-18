@@ -15,7 +15,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  * @file src/platform/usart.h
- * @authors Joanna Zhou, Charles Faisandier
+ * @authors Joanna Zhou, Charles Faisandier, Jude Merritt
  * @brief UART Driver Interface. Doesn't support synchronous mode.
  */
 #pragma once
