@@ -1,24 +1,25 @@
 name: Check CMake Configure
 
 on:
+  workflow_dispatch:
   push:
     branches: [ main ]
   pull_request:
 
 jobs:
   cmake-configure:
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest]
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Run cmake .. in src/build
+      - name: Install ARM GCC toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc-arm-none-eabi binutils-arm-none-eabi
+
+      - name: Run CMake configure
         shell: bash
         run: |
-          mkdir src/build/
-          cd src/build
-          cmake ..
+          cmake -S src -B src/build
